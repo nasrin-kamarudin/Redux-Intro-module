@@ -30,12 +30,6 @@ const BreDetails = () => (
 );
 
 const BreMedical = () => {
-
-//   const [expandedItems, setExpandedItems] = useState<boolean[]>(
-//     new Array(BreMedicalDetails.length).fill(false),
-//   );
-
-
   return (
     <Container
       disableGutters
@@ -46,91 +40,8 @@ const BreMedical = () => {
     >
       <CustomAccordion 
         title="BRE (Business Rules Engine)" 
-        chip={<Badge label="STD" variant="Low" />}
         defaultExpanded
       >
-        {/* <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "0.8fr 2.5fr 2.5fr 1.5fr 0.5fr",
-            gap: "16px",
-            backgroundColor: "#f6f6f6",
-            padding: "16px",
-            marginTop: "8px",
-            borderRadius: "8px",
-          }}
-        >
-          {}
-          {BreMedicalDetails.map((item, index) => {
-            const isExpanded = expandedItems[index];
-            const isLongText = item.value && item.value.length > 100;
-            const isBreDiscrepancy = item.label === "BRE Discrepancy";
-
-            return (
-              <Box key={index} sx={{ ...columnFlex }}>
-                <Typography sx={{ color: "#444444", fontSize: "12px" }}>
-                  {item.label}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: "#161616",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: isExpanded ? "none" : 2,
-                    WebkitBoxOrient: "vertical",
-                  }}
-                >
-                  {item.value}
-                </Typography>
-
-                {(isLongText || isBreDiscrepancy) && (
-                  <Button
-                    onClick={() =>
-                      setExpandedItems((prev) => {
-                        const newExpandedItems = [...prev];
-                        newExpandedItems[index] = !newExpandedItems[index];
-                        return newExpandedItems;
-                      })
-                    }
-                    sx={{
-                      color: "#007BFF",
-                      fontSize: "14px",
-                      p: 0,
-                      alignSelf: "flex-start",
-                      textTransform: "none",
-                    }}
-                  >
-                    {isExpanded ? "Show less" : "Show more"}
-                  </Button>
-                )}
-              </Box>
-            );
-          })}
-
-          <Box
-            sx={{
-              ...centerFlex,
-            }}
-          >
-            <Box
-              component="span"
-              sx={{
-                color: "#9A2529",
-                border: "1px solid #9A2529",
-                padding: 1,
-                borderRadius: "8px",
-                display: "flex",
-                cursor: "pointer",
-              }}
-            >
-              <RefreshIcon />
-            </Box>
-          </Box>
-        </Box> */}
-      
         <BreDetails />
       </CustomAccordion>
     </Container>

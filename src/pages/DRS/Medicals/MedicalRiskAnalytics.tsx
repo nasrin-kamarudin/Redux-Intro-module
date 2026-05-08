@@ -79,7 +79,13 @@ type MedicalRiskAnalyticsProps = {
           overflowX: "hidden"
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 3, ml: 3, mr: 3, mb: 2, width: "100%" }}>
+        <Box sx={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center", 
+          mt: 2, ml: 8, mr: 3, mb: 0,  
+          width: "100%",
+            }}>
           <CustomButton
             variant="text"
             size="small"
@@ -87,7 +93,7 @@ type MedicalRiskAnalyticsProps = {
             sx={{ textTransform: "none", minWidth: 42, display: "flex", alignItems: "center", gap: 0.5, color: "#B02A30", fontWeight: 700 }}
           >
             <KeyLeftArrowIcon width={16} height={16} />
-            Back to DRS
+            Back
           </CustomButton>
 
           <CustomButton
@@ -101,7 +107,9 @@ type MedicalRiskAnalyticsProps = {
                 fontSize: "13px",
                 borderRadius: "50px",
                 fontFamily: "Mulish, sans-serif",
-display: "flex", justifyContent: "flex-end",
+                display: "flex", 
+                justifyContent: "flex-end",
+                mr: 6,
               }}
             >
               {isLoadingUds ? "Loading..." : "View UDS Documents"}

@@ -21,9 +21,8 @@ const ExpandAllLink: React.FC<ExpandAllLinkProps> = ({
       sx={{
         display: "flex",
         justifyContent: "flex-end",
-        mb: 2,
-        pr: 1,
-        margin: "10px 8px 0 auto",
+        mt: 2, ml: 5, mr: 12, mb: 0, pr: 1,
+        width: "100%",
       }}
     >
       <MuiLink
@@ -33,7 +32,7 @@ const ExpandAllLink: React.FC<ExpandAllLinkProps> = ({
           fontSize: "14px",
           fontWeight: 600,
           color: "#063E6F",
-          textDecoration: "underline",
+          textDecoration: "none",
           whiteSpace: "nowrap",
           "&:hover": {
             textDecoration: "underline",
