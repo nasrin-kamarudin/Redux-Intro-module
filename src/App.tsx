@@ -283,7 +283,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/inbox" element={<Inbox />} />
         <Route path="/drs" element={<DRS />} />
-        <Route path="/drs/medicals" element={<MedicalRiskAnalytics />} />
+        <Route
+          path="/drs/medicals"
+          element={<MedicalRiskAnalytics applicationNo="" ntid="" />}
+        />
       </Routes>
     </>
   );
