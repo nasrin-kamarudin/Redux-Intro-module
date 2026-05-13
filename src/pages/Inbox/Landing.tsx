@@ -5,7 +5,9 @@ import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 
 const Landing = () => {
-  const [selectedPool, setSelectedPool] = useState<string>("All Cases");
+  // const [selectedPool, setSelectedPool] = useState<string>("All Cases");
+  const [selectedPool, setSelectedPool] = useState<string>("");
+
   const [toggle, setToggle] = useState<boolean>(false);
 
   return (
