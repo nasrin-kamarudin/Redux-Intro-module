@@ -1,6 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { tableData, Order } from '../../types/inbox.types';
+
+export const fetchInboxTableData = createAsyncThunk<
+  tableData[],
+  void,
+  { rejectValue: string }
+>('inbox/fetchInboxTableData', async (_, thunkAPI) => {
+  try {
+    const response = await fetch('/api/work-pools');
+
+    if (!response.ok) {
+      return thunkAPI.rejectWithValue(
+        `Failed to fetch work pools: ${response.status}`,
+      );
+    }
+
+    const data = (await response.json()) as tableData[];
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(
+      error instanceof Error ? error.message : 'Unknown error while fetching work pools',
+    );
+  }
+});
 
 interface InboxState {
   // Table data
@@ -141,6 +164,23 @@ const inboxSlice = createSlice({
       state.selectedProductType = '';
       state.page = 0;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchInboxTableData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchInboxTableData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tableData = action.payload;
+        state.filteredData = action.payload;
+        state.totalCount = action.payload.length;
+      })
+      .addCase(fetchInboxTableData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload ?? action.error.message ?? 'Failed to load inbox data';
+      });
   },
 });
 

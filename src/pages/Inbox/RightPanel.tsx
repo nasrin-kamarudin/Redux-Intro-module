@@ -21,7 +21,7 @@ import {
 } from "@mui/material";
 import type { Order, SortableFields, tableData } from "../../types/inbox.types";
 import { centerFlex, columnFlex } from "../../utils/styles";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../../component/ui/SearchBar/SearchBar";
 import {
   FilterIcon,
@@ -33,9 +33,8 @@ import Badge from "../../component/ui/Badge/Badge";
 import CustomButton from "../../component/ui/Button/Button";
 import CustomDialog from "../../component/ui/Dialog/Dialog";
 import CustomCheckbox from "../../component/ui/Checkbox/Checkbox";
-import { mockWorkPoolsData } from "../../api/workPoolsMock";
-
-const data = mockWorkPoolsData;
+import { useAppDispatch, useAppSelector } from "../../store/hooks/hooks";
+import { fetchInboxTableData } from "../../store/slices/inboxSlice";
 
 interface ColumnData {
   dataKey: keyof tableData;
@@ -91,7 +90,11 @@ const getDefaultColumns = () => {
 };
 
 const RightPanel = ({ selectedPool }: { selectedPool: string }) => {
-  const [rows] = useState<tableData[]>(data);
+  const dispatch = useAppDispatch();
+  const rows = useAppSelector((state) => state.inbox.tableData);
+  const loading = useAppSelector((state) => state.inbox.loading);
+  const fetchError = useAppSelector((state) => state.inbox.error);
+
   const [error, setError] = useState<string>("");
   const [checked, setChecked] = useState<string[]>([]);
   const [searchText, setSearchText] = useState<string>("");
@@ -113,6 +116,10 @@ const RightPanel = ({ selectedPool }: { selectedPool: string }) => {
       .map((c) => c.label)
       .filter((label) => !getDefaultColumns().includes(label)),
   );
+
+  useEffect(() => {
+    dispatch(fetchInboxTableData());
+  }, [dispatch]);
 
   const handleCloseTransfer = () => {
     setOpenTransferDialog(false);
@@ -472,9 +479,26 @@ const RightPanel = ({ selectedPool }: { selectedPool: string }) => {
           </Box>
         </Box>
 
+        {fetchError && (
+          <Alert severity="error" sx={{ mt: 2, mb: 1 }}>
+            {fetchError}
+          </Alert>
+        )}
+
         {/* Table */}
         <Paper sx={{ height: 435, width: "100%", ...columnFlex, borderRadius: "0 0 20px 20px"}}>
-          {filteredRows.length === 0 ? (
+          {loading ? (
+            <Box
+              sx={{
+                height: 550,
+                ...centerFlex,
+              }}
+            >
+              <Typography variant="h6" color="text.secondary">
+                Loading table data...
+              </Typography>
+            </Box>
+          ) : filteredRows.length === 0 ? (
             <Box
               sx={{
                 height: 550,

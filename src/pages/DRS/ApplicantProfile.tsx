@@ -221,17 +221,6 @@ const genericDetails = [
   { label: "Type of Proposal", value: "Individual" },
 ];
 
-const BreMedicals = [
-  { label: "Decision", value: "Standard" },
-  { label: "Decision Date", value: "01/04/2026" },
-  { label: "Discrepancy", value: "NA" },
-  { label: "Remarks", value: "No adversities observed" },
-  { label: "Medical Decision", value: "Standard" },
-  { label: "Medical Decision Date", value: "01/04/2026" },
-  { label: "Discrepancy", value: "NA" },
-  { label: "Remarks", value: "No adversities observed" },
-];
-
 const PersonalKYC = () => (
   <Box
     sx={{

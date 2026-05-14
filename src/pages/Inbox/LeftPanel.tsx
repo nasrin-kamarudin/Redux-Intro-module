@@ -8,7 +8,7 @@ import {
   TaskIcon,
 } from "../../icons/Icons";
 import { columnFlex, hoverSx, selectedSx } from "../../utils/styles";
-import { mockWorkPoolsData } from "../../api/workPoolsMock";
+import { mockWorkPoolsData } from "../../../mocks/workPoolsMock";
 
 const data = mockWorkPoolsData;
 

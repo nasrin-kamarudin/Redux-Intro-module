@@ -4,9 +4,6 @@ import { centerFlex } from "../../utils/styles";
 import CustomButton from "../../component/ui/Button/Button";
 import { KeyLeftArrowIcon } from "../../icons/Icons";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleMedicalsPanel } from "../../store/slices/drsSlice";
-import type { RootState } from "../../store/store";
 import ApplicationJourney from "./ApplicationJourney";
 import BreDecision from "./BreDecision";
 import Summary from "./Summary";
@@ -14,17 +11,6 @@ import UWToolkit from "./UWToolkit";
 
 const DRS = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // Select medicals data from Redux store
-  const medicals = useSelector((state: RootState) => state.drs.medicals);
-  const medicalsPanelOpen = useSelector(
-    (state: RootState) => state.drs.medicalsPanelOpen
-  );
-
-  const handleToggleMedicalsPanel = () => {
-    dispatch(toggleMedicalsPanel());
-  };
 
   return (
     <>

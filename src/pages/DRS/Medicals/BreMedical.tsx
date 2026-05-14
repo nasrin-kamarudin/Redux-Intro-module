@@ -1,6 +1,5 @@
 import { Box, Container } from "@mui/material";
 import CustomAccordion from "../../../component/ui/Accordion/Accordion";
-import Badge from "../../../component/ui/Badge/Badge";
 import { GridSection } from "../../../component/layout/GridSection";
 
 const BreMedicalDetails = [
