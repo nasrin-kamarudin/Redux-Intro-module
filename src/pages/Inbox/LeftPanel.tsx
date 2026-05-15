@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { PoolProps, tableData } from "../../types/inbox.types";
+import type { PoolProps } from "../../types/inbox.types";
 import { Box, List, Paper, Typography } from "@mui/material";
 import {
   InboxIcon,
@@ -8,9 +8,7 @@ import {
   TaskIcon,
 } from "../../icons/Icons";
 import { columnFlex, hoverSx, selectedSx } from "../../utils/styles";
-import { mockWorkPoolsData } from "../../../mocks/workPoolsMock";
-
-const data = mockWorkPoolsData;
+import { useAppSelector } from "../../store/hooks/hooks";
 
 const workPools = ["1st UW Pool", "Sr. UW Pool", "CMO Pool"];
 const roleMap: Record<string, string> = {
@@ -78,7 +76,7 @@ const LeftPanel = ({
   toggle,
   setToggle,
 }: PoolProps) => {
-  const [rows] = useState<tableData[]>(data);
+  const rows = useAppSelector((state) => state.inbox.tableData);
 
   const getCount = (pool: string) => {
     if (pool === "All Cases") return rows.length;
